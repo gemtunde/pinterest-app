@@ -33,7 +33,7 @@ const Header = () => {
         <>
           <Image
             src={session?.user?.image as string}
-            alt="user"
+            alt="user-image"
             width={50}
             height={50}
             className="hover:bg-gray-300 rounded-full p-2 cursor-pointer"
