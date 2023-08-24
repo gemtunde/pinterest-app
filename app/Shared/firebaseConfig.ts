@@ -6,12 +6,14 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "pinterest-app-88c10.firebaseapp.com",
-  projectId: "pinterest-app-88c10",
-  storageBucket: "pinterest-app-88c10.appspot.com",
-  messagingSenderId: "454131582601",
-  appId: "1:454131582601:web:872c4eb9954b99a4a16858",
+  authDomain: "pinterest-clone-59257.firebaseapp.com",
+  projectId: "pinterest-clone-59257",
+  storageBucket: "pinterest-clone-59257.appspot.com",
+  messagingSenderId: "699569313721",
+  appId: "1:699569313721:web:b3dc6006d0a43bc5450868",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export default app;
