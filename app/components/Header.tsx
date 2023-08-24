@@ -83,7 +83,12 @@ const Header = () => {
       >
         Home
       </button>
-      <button className="font-semibold py-2 px-4 rounded-lg">Create</button>
+      <button
+        className="font-semibold py-2 px-4 rounded-lg"
+        onClick={() => router.push("/pin-builder")}
+      >
+        Create
+      </button>
       <div className=" w-full bg-[#e9e9e9] p-3 flex gap-3 items-center rounded-full">
         <FaSearch className="text-[25px] md:hidden text-gray-500" />
         <input
