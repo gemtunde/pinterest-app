@@ -6,7 +6,9 @@ import UserTag from "@/app/components/UserTag";
 import { useSession } from "next-auth/react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import app from "../Shared/firebaseConfig";
-import { getFirestore, addDoc, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Form = () => {
   const { data: session } = useSession();
@@ -18,11 +20,17 @@ const Form = () => {
     userName: "",
     userImage: "",
     email: "",
+    id: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+
+  //router
+  const router = useRouter();
 
   const onSave = (e) => {
     // e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
+    setIsLoading(true);
     uploadFile();
   };
 
@@ -50,11 +58,14 @@ const Form = () => {
             userName: session?.user?.name,
             email: session?.user?.email,
             userImage: session?.user?.image,
+            id: postId,
           };
           console.log("postdata", postData);
           await setDoc(doc(db, "pinterest-post", postId), postData).then(
             (resp) => {
-              console.log("data saved");
+              // console.log("data saved");
+              setIsLoading(false);
+              router.push(`/${session.user.email}`);
             }
           );
         });
@@ -68,7 +79,17 @@ const Form = () => {
           onClick={() => onSave()}
           className="bg-red-600 p-2 text-white font-semibold px-3 rounded-lg"
         >
-          save
+          {isLoading ? (
+            <Image
+              src="/loading-indicator.png"
+              width={25}
+              height={25}
+              alt="loading"
+              className="animate-spin"
+            />
+          ) : (
+            <span>save</span>
+          )}
         </button>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

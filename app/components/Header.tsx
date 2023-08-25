@@ -67,6 +67,14 @@ const Header = () => {
   };
 
   // console.log(session);
+  //login
+  const onCreateClick = () => {
+    if (session) {
+      router.push("/pin-builder");
+    } else {
+      signIn();
+    }
+  };
   return (
     <div className="flex gap-3 md:gap-2 items-center p-6">
       <Image
@@ -79,13 +87,13 @@ const Header = () => {
       />
       <button
         onClick={() => router.push("/")}
-        className="bg-black text-white py-2 px-4 rounded-lg"
+        className="hidden md:block bg-black text-white py-2 px-4 rounded-lg"
       >
         Home
       </button>
       <button
         className="font-semibold py-2 px-4 rounded-lg"
-        onClick={() => router.push("/pin-builder")}
+        onClick={() => onCreateClick()}
       >
         Create
       </button>
